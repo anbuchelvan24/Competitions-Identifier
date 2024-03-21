@@ -33,10 +33,11 @@ export default function Calendar() {
   const [title, setTitle] = useState("");
   const [width, setWidth] = useState(window.innerWidth);
 
-  // get events data on initial render by fetching data from the database
+  // get events data on initial render by fetching data from the port
   useEffect(() => {
     (async function getEvents() {
-      fetchEvents(setUserEvents);
+      const data = await fetchEvents();
+      setUserEvents([...data])
     })();
   }, []);
 
