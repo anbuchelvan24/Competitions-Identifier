@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "Code to Care Challenge 2021" ,
+    "organisation": "Philips" ,
+    "mode": "Online" ,
+    "deadLine": "12/21/21",
+    "fees": 200,
+    "size": "2-4",
+    "organiser":"Sanjith.K",
+    "number":"1234567890"
+  },
+    {
+      "id": 2,
+      "name": "Central India's Largest Hackathon '24" ,
+      "organisation": "NIT, Bhopal" ,
+      "mode": "Offline" ,
+      "deadLine": "12/21/21",
+      "fees": "FREE",
+      "size": "1-2",
+      "organiser":"Metro Boomin",
+      "number":"09876554321"
+    },
+    {
+      "id": 3,
+      "name": "AI BioInnovate Challenges" ,
+      "organisation": "IIT Jodhpur" ,
+      "mode": "Offline" ,
+      "deadLine": "12/21/21",
+      "fees": 400,
+      "size": "4-5",
+      "organiser":"J Cole",
+      "number":"1122334455"
+    }
+  ]
+  

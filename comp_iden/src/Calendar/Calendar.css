@@ -1,0 +1,37 @@
+/* STYLING DIFFERENT SCREEN SIZES */
+
+@media screen and (max-width: 1100px) {
+  .fc-col-header-cell-cushion {
+    font-size: 12px;
+  }
+
+  .fc-daygrid-day-top {
+    font-size: 10px;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-left {
+    display: flex;
+    margin-right: -200px;
+    margin-left: -14px;
+    gap: 4px;
+  }
+
+  .header-right-mobile {
+    display: flex;
+    gap: 4px;
+  }
+
+  .calendar-title {
+    position: relative;
+    width: 170px;
+    left: -10px;
+    top: 1px;
+    font-size: 19px;
+  }
+}
