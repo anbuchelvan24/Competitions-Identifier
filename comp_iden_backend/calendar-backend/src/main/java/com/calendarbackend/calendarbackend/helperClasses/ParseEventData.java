@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import static com.calendarbackend.calendarbackend.helperClasses.FormatExcelDate.*;
 
-public class ParseEventData {
+ public class ParseEventData {
 
     // Reads and parses the retrieved Excel data to a list of java objects
 
