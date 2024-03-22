@@ -1,7 +1,8 @@
 package com.calendarbackend.calendarbackend.helperClasses;
 
-import com.calendarbackend.calendarbackend.objects.CalendarEvent;
+import com.calendarbackend.calendarbackend.objects.EventDetails;
 import com.poiji.bind.Poiji;
+
 import java.io.File;
 import java.text.ParseException;
 import java.util.List;
@@ -9,32 +10,38 @@ import java.util.Objects;
 
 import static com.calendarbackend.calendarbackend.helperClasses.FormatExcelDate.*;
 
-public class parseEventData {
+public class ParseEventData {
 
-    // reads and parses the retrieved Excel data to a list of java objects
+    // Reads and parses the retrieved Excel data to a list of java objects
 
-    public static List<CalendarEvent> parseExcelData(String fileLocation) throws ParseException {
-        List<CalendarEvent> allEvents =  Poiji.fromExcel(new File(fileLocation), CalendarEvent.class);
+    public static List<EventDetails> parseExcelData(String fileLocation) throws ParseException {
+        List<EventDetails> allEvents = Poiji.fromExcel(new File(fileLocation), EventDetails.class);
 
-        // a simple for each loop to change invalid date formats
+        // Iterate through each event
         allEvents.forEach(event -> {
+            String event_name = event.getTitle();
+            String start = event.getDate();
+            String fee = event.getFee();
+            String mode = event.getMode();
+            String url = event.getUrl();
+            String imgurl = event.getImgurl();
 
-            // checks if the start date is "Live", if true, parse and
-            // format it to today's date
-            if (Objects.equals(event.getDate(), "Live")) {
+            // Handle date formats
+            if (Objects.equals(start, "Live")) {
                 parseLiveDate(event);
-
-            // checks if the start date is in an invalid format
-            // if true, it modifies it to a valid format
-            } else if (isInvalidDateFormat(event.getDate())) {
-                String dateString = event.getDate().substring(0, 10);
+            } else if (isInvalidDateFormat(start)) {
+                String dateString = start.substring(0, 10);
                 event.setDate(dateString);
+            } else {
+                parseDate(start, event);
             }
-            // else, converts the date from "dd/MM/yyyy" to a valid format "yyyy-MM-dd"
-            // for the event object to use
-            else {
-                parseDate(event.getDate(), event);
-            }
+
+            // Set event details
+            event.setTitle(event_name);
+            event.setFee(fee);
+            event.setMode(mode);
+            event.setUrl(url);
+            event.setImgurl(imgurl);
         });
 
         return allEvents;
