@@ -1,0 +1,22 @@
+
+.custom-container {
+    color: white;
+    display: flex;
+    border-radius: 2xl;
+    box-shadow: 0 0 10px black;
+    backdrop-filter: blur(10px);
+    max-width: 1200px;
+    padding: 7px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.main-container{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../assets/bg_login_register4.jpg");
+    background-size: cover;
+
+}

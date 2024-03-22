@@ -1,13 +1,14 @@
 import Lottie from "react-lottie";
-import animationData from "../lotties/animation1.json";
+import animationData from "../lotties/animation2.json";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 // import TextField from "@mui/material/TextField";
 
 function Login() {
-  const [un, setun] = useState("");
-  const [pass, setpass] = useState("");
+  const [un, setUn] = useState("");
+  const [pass, setPass] = useState("");
 
   const defaultOptions1 = {
     loop: true,
@@ -21,23 +22,23 @@ function Login() {
   const handleLogin = () => {
     // Handle login logic here
     if (un === "21z114@psgitech.ac.in" && pass === "1234") {
-      navigate("/");
+      navigate("/home");
     }
   };
 
   return (
-    <div className="bg-[#F5F3F7] min-h-screen flex items-center justify-center">
-      <div className="bg-[#E9E4ED] flex rounded-2xl shadow-custom max-w-[1200px] p-7 m-10">
+    <div className="main-container">
+      <div className="custom-container">
         <div className="sm:w-1/2 sm:block hidden">
           <div className="rounded-2xl ">
-            <Lottie options={defaultOptions1} height="100%" width="100%" />
+            <Lottie className="lottie-animation"  style={{ transform: 'scaleX(-1)' }} id="lottie-container" options={defaultOptions1} height="100%" width="100%" />
           </div>
         </div>
         <div className="sm:w-1/2 px-16 mt-[70px] ">
-          <h1 className="text-[#4A4A4A] font-bold ml-60 text-5xl :mr-20">
+          <h1 className="font-bold ml-60 text-5xl :mr-20">
             WELCOME
           </h1>
-          <p className="text-[#4A4A4A] text-md mt-4 ml-40 mb-5">
+          <p className="text-md mt-4 ml-40 mb-5">
             {" "}
             We are glad to see you back with us
           </p>
@@ -49,7 +50,7 @@ function Login() {
               name="email"
               placeholder="Email"
               value={un}
-              onChange={(e) => setun(e.target.value)}
+              onChange={(e) => setUn(e.target.value)}
             ></input>
             <input
               className="p-4 mr-10 rounded-xl border  ml-4"
@@ -57,7 +58,7 @@ function Login() {
               name="password"
               placeholder="Password"
               value={pass}
-              onChange={(e) => setpass(e.target.value)}
+              onChange={(e) => setPass(e.target.value)}
             ></input>
             <button
               className="bg-[#8B5FBF] text-white text-xl font-bold whitespace-nowrap ml-4 mr-10  self-stretch justify-center items-center mt-12 px-4 py-4 rounded-xl max-md:mt-10 max-md:px-5"

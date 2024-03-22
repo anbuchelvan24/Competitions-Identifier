@@ -5,8 +5,8 @@ import "./Header.css";
 import logo from "./psg_tech_logo.png";
 
 const navigation = [
-  { name: "Home", href: "/Home" },
-  { name: "Events", href: "/cards" },
+  { name: "Home", href: "/home" },
+  { name: "Events", href: "/dashboard" },
   { name: "Gallery", href: "/gallery" },
   { name: "Profile", href: "/profile" },
   { name: "Calendar", href: "/calendar" },

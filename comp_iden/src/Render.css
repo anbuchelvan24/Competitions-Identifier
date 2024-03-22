@@ -1,0 +1,55 @@
+.header {
+    margin-top: 24px;
+    margin-left: 6px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 4xl;
+  }
+  
+  .background1,
+  .background2 {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    filter: blur(30px);
+  }
+  
+  .gradient1 {
+    position: relative;
+    left: calc(50% - 11rem);
+    aspect-ratio: 1155/678;
+    width: 36.125rem;
+    transform: translateX(-50%);
+    background-image: linear-gradient(to top right, #ff80b5, #9089fc);
+    opacity: 0.3;
+  }
+  
+  .gradient2 {
+    position: relative;
+    left: calc(50% + 3rem);
+    aspect-ratio: 1155/678;
+    width: 36.125rem;
+    transform: translateX(-50%);
+    background-image: linear-gradient(to top right, #f45799, #9089fc);
+    opacity: 0.3;
+  }
+  
+  .cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+  }
+  
+  
+  .card {
+    flex: 0 0 calc(33.333% - 20px); /* Set the width of each card to 33.333% with gap taken into account */
+    /* Adjust other card styles as needed */
+  }
+  
+  
