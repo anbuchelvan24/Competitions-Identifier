@@ -1,12 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @layer utilities {
   .shadow-custom {
     box-shadow: 0 20px 20px rgba(217, 207, 230, 0.855),
       0 1px 3px rgb(225, 202, 202);
   }
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure the root container fills the entire viewport */
+html, body, #root {
+  height: 100%;
+}
+
 :root {
   --primary: #6a59ff;
   --white: #ffffff;

@@ -1,0 +1,114 @@
+.overall-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../assets/bg_login_register.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(30px);
+    color: white;
+    border-radius: 15px;
+    padding: 30px 40px;
+    will-change: filter;
+    transition: filter 300ms;
+}
+
+.wrapper:hover{
+    filter: drop-shadow(0px 0px 2em #8588e2d9);
+}
+.wrapper h1{
+    font-size: 50px;
+    text-align: center;
+    font-family: "Kaushan Script", cursive;
+    white-space: nowrap;
+    color: white;
+}
+
+.wrapper:hover h1{
+    text-shadow: 0 0 10px #00f7ff;
+}
+.wrapper .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255,255, .2);
+    border-radius: 40px;
+    color: white;
+    padding: 0px 45px 0px 30px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.input-box input::placeholder{
+    color: beige;
+}
+
+.input-box .FaIcon{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper button{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+}
+
+.wrapper .register-link{
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 280px){
+    .wrapper{
+        width: 250px;
+    }
+
+    .wrapper h1{
+        font-size: 40px;
+    }
+}

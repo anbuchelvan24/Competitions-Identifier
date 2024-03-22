@@ -1,10 +1,12 @@
 package com.calendarbackend.calendarbackend.helperClasses;
 
-import com.calendarbackend.calendarbackend.objects.CalendarEvent;
+import com.calendarbackend.calendarbackend.objects.EventDetails;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class FormatExcelDate {
 
@@ -20,15 +22,17 @@ public class FormatExcelDate {
         }
     }
 
-    static void parseLiveDate(CalendarEvent event){
-        SimpleDateFormat dateFormatter = new SimpleDateFormat();
-        dateFormatter.applyPattern("yyyy-MM-dd");
+    static void parseLiveDate(EventDetails event){
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
         event.setDate(dateFormatter.format(LocalDate.now()));
     }
 
+
+
     // converts the given date to a valid date format
     // for the event object to use
-    static void parseDate(String dateString, CalendarEvent event){
+    static void parseDate(String dateString, EventDetails event){
         try{
             SimpleDateFormat receivedFormatDate = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat expectedFormatDate = new SimpleDateFormat("yyyy-MM-dd");

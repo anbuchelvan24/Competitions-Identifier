@@ -1,0 +1,84 @@
+.overall-register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../assets/bg_login_register4.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper1 {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(30px);
+    color: white;
+    border-radius: 15px;
+    padding: 30px 40px;
+    will-change: filter;
+    transition: filter 300ms;
+}
+
+.wrapper1:hover{
+    filter: drop-shadow(0px 0px 2em #8588e2d9);
+}
+
+.wrapper1 h1{
+    font-size: 50px;
+    text-align: center;
+    font-family: "Kaushan Script", cursive;
+    color: white;
+    
+}
+
+.wrapper1:hover h1{
+    text-shadow: 0 0 10px #00f7ff;
+}
+
+.wrapper1 .input-box1{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0px;
+}
+
+.input-box1 input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255,255, .2);
+    border-radius: 40px;
+    color: white;
+    padding: 0px 45px 0px 30px
+}
+
+.input-box1 input::placeholder{
+    color: beige;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.input-box1 .FaIcon1{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper1 button{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+}

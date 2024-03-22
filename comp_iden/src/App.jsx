@@ -21,7 +21,7 @@ function App() {
             <Route index element={<Navigate replace to="login" />} />
             <Route path="home" element={<Home />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="cards" element={<Render />} />
+            <Route path="dashboard" element={<Render />} />
             <Route path="calendar" element={<Calendar />} />
             <Route path="gallery" element={<Gallery />} />
           </Route>

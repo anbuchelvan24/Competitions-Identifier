@@ -1,0 +1,10 @@
+.fee-text{
+    margin-bottom: 7px;
+    margin-left: 7px /* equivalent to md:ml-1 */
+}
+
+.compbanner{
+    border-radius: 0%;
+    height: 15%;
+    width: auto;
+}
