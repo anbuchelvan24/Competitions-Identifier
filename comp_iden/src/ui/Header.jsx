@@ -33,7 +33,7 @@ function Header() {
 
   return (
     <>
-      <div className="name-logo justify-start flex mt-4 ml-2">
+      <div className="overall name-logo justify-start flex mt-4 ml-2">
         <a href="#">
           <img src={logo} alt="Logo" className="Logo"></img>
         </a>
@@ -79,7 +79,7 @@ function Header() {
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
         >
-          <div className="fixed inset-0 z-50" />
+          <div className="hamburgermenu fixed inset-0 z-50" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <div className="name-logo flex justify-start">
@@ -125,7 +125,7 @@ function Header() {
         {/* Notifications tab */}
         <Dialog
           as="div"
-          className=""
+          className="notificationtab"
           open={notificationsOpen}
           onClose={() => setNotificationsOpen(false)}
         >

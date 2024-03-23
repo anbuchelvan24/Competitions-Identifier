@@ -51,7 +51,7 @@ export default function Render() {
   }, [searchItem, records]);
 
   return (
-    <>
+    <div className='renderpage'>
       <div>
         <h1 className="mt-24 ml-6 mb-2 font-bold text-4xl">Technical events</h1>
       </div>
@@ -59,14 +59,25 @@ export default function Render() {
         <div className="gradient1" />
       </div>
       <div>
-        <TextField
-          sx={{ width: '300px', ml: '40%' }}
-          size="large"
-          value={searchItem}
-          onChange={handleInputChange}
-          label="Search Events"
-          variant="standard"
-        />
+      <TextField
+  className='searchbar'
+  sx={{
+    width: '300px',
+    height: '70px',
+    ml: '40%',
+    textAlign: 'center',
+    '& input': { fontFamily: 'Poppins', fontSize: '20px' },
+    '& input::label': { fontFamily: 'Poppins', fontSize: '20px' }
+  }}
+  size="large"
+  value={searchItem}
+  onChange={handleInputChange}
+  label="Search"
+  variant="filled"
+  placeholder="Search Events"
+  
+/>
+
       </div>
       <motion.div
         variants={fadeIn}
@@ -91,6 +102,6 @@ export default function Render() {
       <div className="background2" aria-hidden="true">
         <div className="gradient2" />
       </div>
-    </>
+    </div>
   );
 }

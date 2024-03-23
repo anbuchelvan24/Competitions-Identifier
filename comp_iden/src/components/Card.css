@@ -5,6 +5,17 @@
 
 .compbanner{
     border-radius: 0%;
-    height: 15%;
+    height: 30vh;
     width: auto;
 }
+
+.regbox{
+    color: white;
+    border-radius: 10px;
+    transition: border-radius 0.2s ease-in;
+}
+
+.regbox:hover {
+    border-radius: 40px;
+  }
+  

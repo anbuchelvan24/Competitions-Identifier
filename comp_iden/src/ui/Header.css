@@ -38,6 +38,12 @@
   max-width: 40px;
   max-height: 100px;
   margin-right: 10px;
+  margin-left: 10px;
+}
+
+.overall{
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
 }
 
 .name-logo {
@@ -155,4 +161,23 @@
 .creationtime{
   font-size: small;
   color: grey;
+}
+
+.notificationtab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1000; /* Ensure it's above other content */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.hamburgermenu{
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1000;
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
 }

@@ -46,7 +46,7 @@ function Card(props) {
           <div className="flex mt-1 space-around">
             <div className="w-[20%] h-[15%]">
               <img
-                className="compbanner object-cover w-full"
+                className="compbanner"
                 src={props.imgurl}
                 onError={(e) => { e.target.src = DemoImage; }}
                 alt="Competition Banner"
@@ -87,8 +87,8 @@ function Card(props) {
               </div>
 
               <div className="flex ml-auto hover:shadow-xl md:w-1/3">
-                <button className="border rounded-lg border-2 rounded-lg p-1 w-full text-white bg-black bg-blue-500 ml-auto justify-end">
-                  <a href={`${props.url}`} className="text-white">
+                <button className="regbox p-1 w-full text-white bg-black bg-blue-500 ml-auto justify-end">
+                  <a href={`${props.url}`} className="register-button">
                     Register
                   </a>
                 </button>
