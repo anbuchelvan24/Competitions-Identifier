@@ -1,6 +1,6 @@
 package com.calendarbackend.calendarbackend.helperClasses;
 
-import com.calendarbackend.calendarbackend.objects.EventDetails;
+import com.calendarbackend.calendarbackend.models.EventDetails;
 import com.poiji.bind.Poiji;
 
 import java.io.File;

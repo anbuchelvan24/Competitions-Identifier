@@ -1,7 +1,7 @@
 package com.calendarbackend.calendarbackend.controllers;
 
 import com.calendarbackend.calendarbackend.helperClasses.ParseEventData;
-import com.calendarbackend.calendarbackend.objects.EventDetails;
+import com.calendarbackend.calendarbackend.models.EventDetails;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

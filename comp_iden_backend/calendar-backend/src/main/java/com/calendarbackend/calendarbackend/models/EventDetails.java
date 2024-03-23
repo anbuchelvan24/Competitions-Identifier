@@ -1,8 +1,9 @@
-package com.calendarbackend.calendarbackend.objects;
+package com.calendarbackend.calendarbackend.models;
 
-import com.poiji.annotation.ExcelCell;
 import com.poiji.annotation.ExcelCellName;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "events")
 public class EventDetails {
 
     @ExcelCellName("Fest Name")
