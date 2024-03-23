@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
+import { fetchGalleryEvents } from "../DataHandling";
 const fadeIn = {
   initial: { opacity: 0, y: 100 },
   animate: {
@@ -18,51 +19,9 @@ const fadeIn = {
 };
 
 function Gallery() {
+  const [events, setEvents] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
-  const events = [
-    {
-      id: 1,
-      name: "SMART INDIA HACKATHON",
-      imageUrl:
-        "https://firebasestorage.googleapis.com/v0/b/my-first-projects-8b061.appspot.com/o/image1.jpg?alt=media&token=f77118b9-5c4a-4535-8e26-8528c68f90f0",
-      details:
-        "YEAR: 2021-22...\nPRIZE: Rs.1,00,000\nTEAM MEMBERS: A, B, C\nIDEA: Chatbot for medical prescriptions",
-    },
-    {
-      id: 2,
-      name: "CODING CONTEST",
-      imageUrl:
-        "https://firebasestorage.googleapis.com/v0/b/my-first-projects-8b061.appspot.com/o/image3.jpg?alt=media&token=3803ea48-f1b3-4afa-8991-e8d3ae841cf2",
-      details:
-        "YEAR: 2021-22...\nPRIZE: Rs.1,00,000\nTEAM MEMBERS: A, B, C\nPLACE: 3rd place",
-    },
-    {
-      id: 3,
-      name: "SMART INDIA HACKATHON",
-      imageUrl:
-        "https://firebasestorage.googleapis.com/v0/b/my-first-projects-8b061.appspot.com/o/image1.jpg?alt=media&token=f77118b9-5c4a-4535-8e26-8528c68f90f0",
-      details:
-        "YEAR: 2021-22...\nPRIZE: Rs.1,00,000\nTEAM MEMBERS: A, B, C\nIDEA: Chatbot for medical prescriptions",
-    },
-    {
-      id: 4,
-      name: "CODING CONTEST",
-      imageUrl:
-        "https://firebasestorage.googleapis.com/v0/b/my-first-projects-8b061.appspot.com/o/image3.jpg?alt=media&token=3803ea48-f1b3-4afa-8991-e8d3ae841cf2",
-      details:
-        "YEAR: 2021-22...\nPRIZE: Rs.1,00,000\nTEAM MEMBERS: A, B, C\nPLACE: 3rd place",
-    },
-    {
-      id: 5,
-      name: "SMART INDIA HACKATHON",
-      imageUrl:
-        "https://firebasestorage.googleapis.com/v0/b/my-first-projects-8b061.appspot.com/o/image1.jpg?alt=media&token=f77118b9-5c4a-4535-8e26-8528c68f90f0",
-      details:
-        "YEAR: 2021-22...\nPRIZE: Rs.1,00,000\nTEAM MEMBERS: A, B, C\nIDEA: Chatbot for medical prescriptions",
-    },
-  ];
 
   const openEventDetails = (event) => {
     setSelectedEvent(event);
@@ -73,6 +32,23 @@ function Gallery() {
     setSelectedEvent(null);
     setShowDetails(false);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchGalleryEvents();
+        setEvents(response || []);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        // Handle error (e.g., show error message to the user)
+      }
+    };
+
+    fetchData();
+  },[])
+
+  console.log(events)
+
   return (
     <>
       <h1 className="text-5xl flex align-center justify-center mt-20 font-bold">
@@ -113,10 +89,10 @@ function Gallery() {
                 boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)",
               }}
             >
-              <h2 style={{ marginBottom: "10px" }}>{selectedEvent.name}</h2>
+              <h2 style={{ marginBottom: "10px" }}>{selectedEvent.title}</h2>
               <img
-                src={selectedEvent.imageUrl}
-                alt={selectedEvent.name}
+                src={selectedEvent.imgUrl}
+                alt={selectedEvent.title}
                 style={{
                   width: "100%",
                   maxHeight: "400px",
@@ -157,8 +133,8 @@ function Gallery() {
             <SwiperSlide>
               <img
                 key={event.id}
-                src={event.imageUrl}
-                alt={event.name}
+                src={event.imgUrl}
+                alt={event.title}
                 onClick={() => openEventDetails(event)}
               />
             </SwiperSlide>
@@ -210,10 +186,10 @@ function Gallery() {
                 boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)",
               }}
             >
-              <h2 style={{ marginBottom: "10px" }}>{selectedEvent.name}</h2>
+              <h2 style={{ marginBottom: "10px" }}>{selectedEvent.title}</h2>
               <img
-                src={selectedEvent.imageUrl}
-                alt={selectedEvent.name}
+                src={selectedEvent.imgUrl}
+                alt={selectedEvent.title}
                 style={{
                   width: "100%",
                   maxHeight: "400px",
@@ -253,8 +229,8 @@ function Gallery() {
             <SwiperSlide>
               <img
                 key={event.id}
-                src={event.imageUrl}
-                alt={event.name}
+                src={event.imgUrl}
+                alt={event.title}
                 onClick={() => openEventDetails(event)}
               />
             </SwiperSlide>

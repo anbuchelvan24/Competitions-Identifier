@@ -11,9 +11,9 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import { motion } from "framer-motion";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
-import fetchEvents from "./DataHandling";
 import moment from "moment";
 import SwipeableEdgeDrawer from "../CalendarHeader/SubComponents/SwipeableDrawer";
+import { fetchEvents } from "../DataHandling";
 const fadeIn2 = {
   initial: { opacity: 0, y: 100 },
   animate: {

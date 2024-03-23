@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Card from './components/Card';
-import fetchEvents from './DataHandling';
 import { motion } from 'framer-motion';
 import './Render.css'; // Import CSS file
 import { TextField } from '@mui/material';
+import { fetchEvents } from './DataHandling';
 
 const fadeIn = {
   initial: { opacity: 0, y: 100 },
