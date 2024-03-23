@@ -1,10 +1,9 @@
-// Card.js
-
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import DemoImage from "../assets/demo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Card.css";
+import axios from "axios";
 import {
   faCalendarDays,
   faHeart,
@@ -12,7 +11,9 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Details";
-import { toast } from "react-toastify"; // Import react-toastify
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for styling
+ // Import react-toastify
 
 function Card(props) {
   const [showModal, setShowModal] = useState(false);
@@ -21,14 +22,23 @@ function Card(props) {
     setShowModal(true);
   };
 
-  const handleInterested = () => {
-    // Trigger in-app notification
-    toast.success('You have shown interest!', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 2000 // Close after 2 seconds
-    });
-  };
+  const handleInterested = async (e) => {
 
+    e.preventDefault();
+    // Trigger in-app notification    
+     try {
+      const response = await axios.post('http://localhost:5000/api/notifications', {
+        message: `You showed interest on ${props.title}`
+      });
+
+      console.log('Notification sent:', response.data);
+      // You can handle the response here as needed
+    } catch (error) {
+      console.error('Error sending notification:', error);
+      // Handle errors appropriately
+    }
+
+};
   return (
     <>
       <section className=" mt-24 grid gap-8 rounded-xl border border-black m-2  hover:shadow-2xl md:m-5">

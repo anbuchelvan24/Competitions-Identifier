@@ -1,8 +1,10 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import "./Header.css";
 import logo from "./psg_tech_logo.png";
+import { MdCircleNotifications } from "react-icons/md";
+import { AiOutlineCloseCircle } from "react-icons/ai"; // Import close icon
 
 const navigation = [
   { name: "Home", href: "/home" },
@@ -14,6 +16,20 @@ const navigation = [
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+ 
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+  
+  const fetchNotifications = () => {
+    fetch('http://localhost:5000/api/notifications')
+      .then(response => response.json())
+      .then(data => setNotifications(data))
+      .catch(error => console.error('Error fetching notifications:', error));
+  };
+  
 
   return (
     <>
@@ -40,6 +56,12 @@ function Header() {
           </div>
 
           <div className="hidden lg:flex lg:gap-x-12">
+            <button
+              onClick={() => setNotificationsOpen(!notificationsOpen)} // Toggle notifications panel
+              className="text-xl font-bold leading-6 text-gray-900" // Style as needed
+            >
+              <MdCircleNotifications />
+            </button>
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -78,6 +100,12 @@ function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
+                  <button
+                    onClick={() => setNotificationsOpen(!notificationsOpen)} // Toggle notifications panel
+                    className="-mx-3 block rounded-lg px-3 py-2 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Notifications
+                  </button>
                   {navigation.map((item) => (
                     <a
                       key={item.name}
@@ -91,6 +119,33 @@ function Header() {
                 <div className="py-6"></div>
               </div>
             </div>
+          </Dialog.Panel>
+        </Dialog>
+
+        {/* Notifications tab */}
+        <Dialog
+          as="div"
+          className=""
+          open={notificationsOpen}
+          onClose={() => setNotificationsOpen(false)}
+        >
+          <div className="fixed inset-0 z-50" />
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold">Notifications</h2>
+              <button
+                onClick={() => setNotificationsOpen(false)}
+                className="text-gray-700"
+              >
+                <AiOutlineCloseCircle className="h-6 w-6" />
+              </button>
+            </div>
+            {notifications.map(notification => (
+            <div key={notification._id} className="p-2 border-b">
+              <p>{notification.message}</p>
+              <p className="creationtime">{notification.createdAt}</p>
+            </div>
+          ))}
           </Dialog.Panel>
         </Dialog>
       </header>

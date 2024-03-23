@@ -147,3 +147,12 @@
     margin-left: 15px;
   }
 }
+
+.hidden{
+  font-size: 20px;
+}
+
+.creationtime{
+  font-size: small;
+  color: grey;
+}

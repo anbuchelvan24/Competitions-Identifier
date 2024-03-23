@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Card from './components/Card';
+import Card from './components/cardu';
 import { motion } from 'framer-motion';
 import './Render.css'; // Import CSS file
 import { TextField } from '@mui/material';
@@ -15,26 +15,28 @@ const fadeIn = {
 };
 
 export default function Render() {
-
   const [records, setRecords] = useState([]);
   const [filteredRecords, setFilteredRecords] = useState([]);
   const [searchItem, setSearchItem] = useState('');
 
   const handleInputChange = (e) => {
     const searchInput = e.target.value;
-    setSearchItem(searchInput)
+    setSearchItem(searchInput);
 
-    const filteredEvents = records.filter((record) => record.title.toLowerCase().includes(searchInput.toLowerCase()))
-    setFilteredRecords(filteredEvents)
-    
-  }
+    const filteredEvents = records.filter((record) =>
+      record.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setFilteredRecords(filteredEvents);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetchEvents();
-        setRecords(response || []);
-        setFilteredRecords(response || [])
+        // Sort records based on start date
+        const sortedRecords = response.sort((a, b) => new Date(a.start) - new Date(b.start));
+        setRecords(sortedRecords || []);
+        setFilteredRecords(sortedRecords || []);
       } catch (error) {
         console.error('Error fetching events:', error);
         // Handle error (e.g., show error message to the user)
@@ -45,10 +47,8 @@ export default function Render() {
   }, []);
 
   useEffect(() => {
-    if (searchItem === '') setFilteredRecords(records)
-  })
-
-  console.log(records.length, filteredRecords.length)
+    if (searchItem === '') setFilteredRecords(records);
+  }, [searchItem, records]);
 
   return (
     <>
@@ -59,11 +59,33 @@ export default function Render() {
         <div className="gradient1" />
       </div>
       <div>
-        <TextField sx={{width: '300px', ml: '40%'}} size='large' value={searchItem} onChange={handleInputChange} label="Search Events" variant="standard" />
+        <TextField
+          sx={{ width: '300px', ml: '40%' }}
+          size="large"
+          value={searchItem}
+          onChange={handleInputChange}
+          label="Search Events"
+          variant="standard"
+        />
       </div>
-      <motion.div variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }} className="mt-20 card-container">
+      <motion.div
+        variants={fadeIn}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        className="mt-20 card-container"
+      >
         {filteredRecords.map((record, index) => (
-          <Card key={index} title={record.title} start={record.start} mode={record.mode} fees={record.fee} url={record.url} imgurl={record.imgurl} className="card" />
+          <Card
+            key={index}
+            title={record.title}
+            start={record.start}
+            mode={record.mode}
+            fees={record.fee}
+            url={record.url}
+            imgurl={record.imgurl}
+            className="card"
+          />
         ))}
       </motion.div>
       <div className="background2" aria-hidden="true">
