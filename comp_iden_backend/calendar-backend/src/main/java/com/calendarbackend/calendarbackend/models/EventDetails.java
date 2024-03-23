@@ -3,9 +3,8 @@ package com.calendarbackend.calendarbackend.models;
 import com.poiji.annotation.ExcelCellName;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "events")
-public class EventDetails {
 
+public class EventDetails {
     @ExcelCellName("Fest Name")
     private String title;
     @ExcelCellName("Mode")

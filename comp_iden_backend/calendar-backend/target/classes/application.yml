@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://ci_user:12345@locallibrarycluster.fkijcgu.mongodb.net/?retryWrites=true&w=majority&appName=localLibraryCluster
+      database: events
