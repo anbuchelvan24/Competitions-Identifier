@@ -51,6 +51,8 @@ export default function Calendar() {
           if (event.title === registeredEvent.title && event.start === registeredEvent.start) event.backgroundColor = 'green'
         })
       })
+
+      setUserEvents([...allEvents])
     })();
   }, []);
 
