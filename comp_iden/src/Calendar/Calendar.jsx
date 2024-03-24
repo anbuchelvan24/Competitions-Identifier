@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
 import moment from "moment";
 import SwipeableEdgeDrawer from "../CalendarHeader/SubComponents/SwipeableDrawer";
-import { fetchEvents } from "../DataHandling";
+import { fetchEvents, fetchRegisteredEvents } from "../DataHandling";
 const fadeIn2 = {
   initial: { opacity: 0, y: 100 },
   animate: {
@@ -27,6 +27,8 @@ export default function Calendar() {
   // states
   const calendarRef = useRef(null);
   const [userEvents, setUserEvents] = useState(null);
+
+  
   const [date, setDate] = useState(
     moment(calendarRef.current?.getApi().getDate())
   );
@@ -37,9 +39,25 @@ export default function Calendar() {
   useEffect(() => {
     (async function getEvents() {
       const data = await fetchEvents();
+      const data2 = await fetchRegisteredEvents();
+      const registeredEvents = []
+      
+      data2.map((event) => {
+        const obj = {title: event.title, start: event.createdAt};
+        registeredEvents.push(obj)
+      });
+
+      data.map(event => {
+        data2.map(evt => {
+          if (event.title === evt.title && evt.start === evt.start) event.backgroundColor = 'green'
+        })
+      })
+      console.log(data)
       setUserEvents([...data])
+
     })();
   }, []);
+
 
   // tracks the widow size to change view on devices
   useEffect(() => {

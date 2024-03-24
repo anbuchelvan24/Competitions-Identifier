@@ -11,9 +11,9 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Details";
+import moment from "moment";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for styling
- // Import react-toastify
 
 function Card(props) {
   const [showModal, setShowModal] = useState(false);
@@ -25,10 +25,13 @@ function Card(props) {
   const handleInterested = async (e) => {
 
     e.preventDefault();
+
     // Trigger in-app notification    
      try {
       const response = await axios.post('http://localhost:5000/api/notifications', {
-        message: `You showed interest on ${props.title}`
+        title: props.title,
+        message: `You showed interest on ${props.title}`,
+        createdAt: new Date(props.start)
       });
 
       console.log('Notification sent:', response.data);

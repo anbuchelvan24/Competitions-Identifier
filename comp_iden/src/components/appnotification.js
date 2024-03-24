@@ -20,6 +20,7 @@ mongoose.connect('mongodb://localhost:27017/popup-messages', {
 
 // Schema for notifications
 const notificationSchema = new mongoose.Schema({
+  title: String,
   message: String,
   createdAt: { type: Date, default: Date.now }
 });
@@ -28,8 +29,11 @@ const Notification = mongoose.model('Notification', notificationSchema, "21z104@
 
 // Save a new notification
 app.post('/api/notifications', (req, res) => {
+  console.log(new Date(req.body.createdAt))
   const newNotification = new Notification({
-    message: req.body.message
+    title: req.body.title,
+    message: req.body.message,
+    createdAt: req.body.createdAt
   });
 
   newNotification.save()
@@ -45,13 +49,14 @@ app.get('/api/notifications', (req, res) => {
     .then(notifications => {
       // Format createdAt field
       const formattedNotifications = notifications.map(notification => {
-        const formattedDate = new Date(notification.createdAt).toLocaleString('en-US', {
+        const formattedDate = notification.createdAt.toLocaleString('en-US', {
           hour: 'numeric',
           minute: 'numeric',
           day: '2-digit',
           month: 'short',
           year: 'numeric'
         });
+
         return {
           ...notification.toJSON(),
           createdAt: formattedDate
