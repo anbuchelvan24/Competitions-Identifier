@@ -27,8 +27,6 @@ export default function Calendar() {
   // states
   const calendarRef = useRef(null);
   const [userEvents, setUserEvents] = useState(null);
-
-  
   const [date, setDate] = useState(
     moment(calendarRef.current?.getApi().getDate())
   );
@@ -40,21 +38,21 @@ export default function Calendar() {
     (async function getEvents() {
       const allEvents = await fetchEvents();
       const userRegisteredEvents = await fetchRegisteredEvents();
-      
-      const  registeredEvents = []
+
+      // highlights (in green) the user's registered events
+      const registeredEvents = []
       userRegisteredEvents.map((event) => {
         const obj = {title: event.title, start: event.createdAt};
         registeredEvents.push(obj)
       });
 
-      // highlights (in green) the user's registered events
       allEvents.map(event => {
         userRegisteredEvents.map(registeredEvent => {
           if (event.title === registeredEvent.title && event.start === registeredEvent.start) event.backgroundColor = 'green'
         })
       })
-      setUserEvents([...data])
 
+      setUserEvents([...allEvents])
     })();
   }, []);
 
