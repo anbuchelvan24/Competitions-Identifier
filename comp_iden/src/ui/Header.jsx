@@ -42,7 +42,6 @@ function Header() {
 
   const handleClick = () => {
     notifications.forEach(async notif => {
-
       try{
         await axios.post('http://localhost:5000/api/updateNotification', {...notif, read: true});
       } catch(err){
@@ -165,11 +164,18 @@ function Header() {
                 <AiOutlineCloseCircle className="h-6 w-6" />
               </button>
             </div>
-            {console.log(notifications)}
-            {notifications.map(notification => (
+
+            {notifications.map(notification => ( 
             <div key={notification._id} className="p-2 border-b">
               <p>{notification.message}</p>
+
               <p className="creationtime">{notification.createdAt}</p>
+              <p>
+                {Math.round((new Date(notification.createdAt).getTime() - new Date().getTime()) / (1000 * 3600 * 24)) < 0 ? 'The event has concluded or is Live.' :
+              `Event In : ${Math.round((new Date(notification.createdAt).getTime() - new Date().getTime()) / (1000 * 3600 * 24))} Days,
+              ${Math.round((new Date(notification.createdAt).getTime() - new Date().getTime()) / 36e5 )} Hours`}
+              </p>
+
             </div>
           ))}
           </Dialog.Panel>

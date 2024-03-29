@@ -38,21 +38,21 @@ export default function Calendar() {
   // get events data on initial render by fetching data from the port
   useEffect(() => {
     (async function getEvents() {
-      const data = await fetchEvents();
-      const data2 = await fetchRegisteredEvents();
-      const registeredEvents = []
+      const allEvents = await fetchEvents();
+      const userRegisteredEvents = await fetchRegisteredEvents();
       
-      data2.map((event) => {
+      const  registeredEvents = []
+      userRegisteredEvents.map((event) => {
         const obj = {title: event.title, start: event.createdAt};
         registeredEvents.push(obj)
       });
 
-      data.map(event => {
-        data2.map(evt => {
-          if (event.title === evt.title && evt.start === evt.start) event.backgroundColor = 'green'
+      // highlights (in green) the user's registered events
+      allEvents.map(event => {
+        userRegisteredEvents.map(registeredEvent => {
+          if (event.title === registeredEvent.title && event.start === registeredEvent.start) event.backgroundColor = 'green'
         })
       })
-      console.log(data)
       setUserEvents([...data])
 
     })();
