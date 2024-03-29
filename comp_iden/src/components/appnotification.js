@@ -22,14 +22,14 @@ mongoose.connect('mongodb://localhost:27017/popup-messages', {
 const notificationSchema = new mongoose.Schema({
   title: String,
   message: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  read: {type: Boolean, default: false}
 });
 
-const Notification = mongoose.model('Notification', notificationSchema, "21z104@psgitech.ac.in");
+const Notification = mongoose.model('Notification', notificationSchema, "test");
 
 // Save a new notification
 app.post('/api/notifications', (req, res) => {
-  console.log(new Date(req.body.createdAt))
   const newNotification = new Notification({
     title: req.body.title,
     message: req.body.message,
@@ -66,6 +66,18 @@ app.get('/api/notifications', (req, res) => {
     })
     .catch(err => res.status(500).json({ error: err.message }));
 });
+
+app.get('/api/notificationCount', async (req, res) => {
+  const count = await Notification.countDocuments({read: false}).exec()
+  res.json(count)
+})
+
+app.post('/api/updateNotification', async(req, res) => {
+  const notif = await Notification.findById(req.body._id);
+  notif.read = true
+  await Notification.findByIdAndUpdate(req.body._id, notif)
+  res.redirect('/api/notificationCount')
+})
 
 
 const PORT = process.env.PORT || 5000;

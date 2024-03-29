@@ -11,9 +11,9 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Details";
-import moment from "moment";
-import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS for styling
+// import moment from "moment";
+// import { toast } from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css'; // Import CSS for styling
 
 function Card(props) {
   const [showModal, setShowModal] = useState(false);

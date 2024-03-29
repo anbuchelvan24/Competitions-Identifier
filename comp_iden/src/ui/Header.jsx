@@ -5,6 +5,7 @@ import "./Header.css";
 import logo from "./psg_tech_logo.png";
 import { MdCircleNotifications } from "react-icons/md";
 import { AiOutlineCloseCircle } from "react-icons/ai"; // Import close icon
+import axios from "axios";
 
 const navigation = [
   { name: "Home", href: "/home" },
@@ -18,9 +19,11 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const [notificationCount, setNotificationCount] = useState(0);
  
   useEffect(() => {
     fetchNotifications();
+    fetchNotificationCount();
   }, []);
   
   const fetchNotifications = () => {
@@ -29,7 +32,26 @@ function Header() {
       .then(data => setNotifications(data))
       .catch(error => console.error('Error fetching notifications:', error));
   };
-  
+
+  const fetchNotificationCount = () => {
+    fetch('http://localhost:5000/api/notificationCount')
+      .then(response => response.json())
+      .then(data => setNotificationCount(data))
+      .catch(error => console.error('Error fetching notifications:', error));
+  }
+
+  const handleClick = () => {
+    notifications.forEach(async notif => {
+
+      try{
+        await axios.post('http://localhost:5000/api/updateNotification', {...notif, read: true});
+      } catch(err){
+        console.log('Error Updating Notification Status!', err)
+      }
+    })
+    
+  }
+
 
   return (
     <>
@@ -57,10 +79,13 @@ function Header() {
 
           <div className="hidden lg:flex lg:gap-x-12">
             <button
-              onClick={() => setNotificationsOpen(!notificationsOpen)} // Toggle notifications panel
+              onClick={() => {
+                setNotificationsOpen(!notificationsOpen);
+                handleClick()
+              }} // Toggle notifications panel
               className="text-xl font-bold leading-6 text-gray-900" // Style as needed
             >
-              <MdCircleNotifications />
+              <MdCircleNotifications /> {`(${notificationCount})`}
             </button>
             {navigation.map((item) => (
               <a
@@ -140,6 +165,7 @@ function Header() {
                 <AiOutlineCloseCircle className="h-6 w-6" />
               </button>
             </div>
+            {console.log(notifications)}
             {notifications.map(notification => (
             <div key={notification._id} className="p-2 border-b">
               <p>{notification.message}</p>
