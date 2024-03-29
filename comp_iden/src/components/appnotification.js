@@ -20,16 +20,20 @@ mongoose.connect('mongodb://localhost:27017/popup-messages', {
 
 // Schema for notifications
 const notificationSchema = new mongoose.Schema({
+  title: String,
   message: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  read: {type: Boolean, default: false}
 });
 
-const Notification = mongoose.model('Notification', notificationSchema, "21z104@psgitech.ac.in");
+const Notification = mongoose.model('Notification', notificationSchema, "test");
 
 // Save a new notification
 app.post('/api/notifications', (req, res) => {
   const newNotification = new Notification({
-    message: req.body.message
+    title: req.body.title,
+    message: req.body.message,
+    createdAt: req.body.createdAt
   });
 
   newNotification.save()
@@ -45,13 +49,14 @@ app.get('/api/notifications', (req, res) => {
     .then(notifications => {
       // Format createdAt field
       const formattedNotifications = notifications.map(notification => {
-        const formattedDate = new Date(notification.createdAt).toLocaleString('en-US', {
+        const formattedDate = notification.createdAt.toLocaleString('en-US', {
           hour: 'numeric',
           minute: 'numeric',
           day: '2-digit',
           month: 'short',
           year: 'numeric'
         });
+
         return {
           ...notification.toJSON(),
           createdAt: formattedDate
@@ -61,6 +66,18 @@ app.get('/api/notifications', (req, res) => {
     })
     .catch(err => res.status(500).json({ error: err.message }));
 });
+
+app.get('/api/notificationCount', async (req, res) => {
+  const count = await Notification.countDocuments({read: false}).exec()
+  res.json(count)
+})
+
+app.post('/api/updateNotification', async(req, res) => {
+  const notif = await Notification.findById(req.body._id);
+  notif.read = true
+  await Notification.findByIdAndUpdate(req.body._id, notif)
+  res.redirect('/api/notificationCount')
+})
 
 
 const PORT = process.env.PORT || 5000;

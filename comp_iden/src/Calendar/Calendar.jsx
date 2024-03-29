@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
 import moment from "moment";
 import SwipeableEdgeDrawer from "../CalendarHeader/SubComponents/SwipeableDrawer";
-import { fetchEvents } from "../DataHandling";
+import { fetchEvents, fetchRegisteredEvents } from "../DataHandling";
 const fadeIn2 = {
   initial: { opacity: 0, y: 100 },
   animate: {
@@ -36,10 +36,28 @@ export default function Calendar() {
   // get events data on initial render by fetching data from the port
   useEffect(() => {
     (async function getEvents() {
-      const data = await fetchEvents();
-      setUserEvents([...data])
+
+      const allEvents = await fetchEvents();
+      const userRegisteredEvents = await fetchRegisteredEvents();
+
+      // highlights (in green) the user's registered events
+      const registeredEvents = []
+      userRegisteredEvents.map((event) => {
+        const obj = {title: event.title, start: moment(event.createdAt).format('YYYY-MM-DD')};
+        registeredEvents.push(obj)
+      });
+      console.log(registeredEvents)
+      allEvents.map(event => {
+        registeredEvents.map(registeredEvent => {
+          
+          if (event.title === registeredEvent.title && event.start === registeredEvent.start) event.backgroundColor = 'green'
+        })
+      })
+
+      setUserEvents([...allEvents])
     })();
   }, []);
+
 
   // tracks the widow size to change view on devices
   useEffect(() => {
