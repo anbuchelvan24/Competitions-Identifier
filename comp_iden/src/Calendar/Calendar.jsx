@@ -36,6 +36,7 @@ export default function Calendar() {
   // get events data on initial render by fetching data from the port
   useEffect(() => {
     (async function getEvents() {
+      
       const allEvents = await fetchEvents();
       const userRegisteredEvents = await fetchRegisteredEvents();
 
