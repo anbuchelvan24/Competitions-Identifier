@@ -2,13 +2,13 @@ import Lottie from "react-lottie";
 import animationData from "../lotties/animation2.json";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios for making HTTP requests
 import "./Login.css";
-
-// import TextField from "@mui/material/TextField";
 
 function Login() {
   const [un, setUn] = useState("");
   const [pass, setPass] = useState("");
+  const [error, setError] = useState(""); // State to handle error messages
 
   const defaultOptions1 = {
     loop: true,
@@ -19,10 +19,21 @@ function Login() {
     },
   };
   const navigate = useNavigate();
-  const handleLogin = () => {
-    // Handle login logic here
-    if (un === "21z114@psgitech.ac.in" && pass === "1234") {
-      navigate("/home");
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/logins", { email: un, password: pass });
+      if (response.status === 200) {
+        console.log("Okay dhaan da");
+        console.log(response.message);
+        navigate("/home");
+        
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
+      setError("An error occurred. Please try again later.");
     }
   };
 
@@ -31,7 +42,7 @@ function Login() {
       <div className="custom-container">
         <div className="sm:w-1/2 sm:block hidden">
           <div className="rounded-2xl ">
-            <Lottie className="lottie-animation"  style={{ transform: 'scaleX(-1)' }} id="lottie-container" options={defaultOptions1} height="100%" width="100%" />
+            <Lottie className="lottie-animation" style={{ transform: 'scaleX(-1)' }} id="lottie-container" options={defaultOptions1} height="100%" width="100%" />
           </div>
         </div>
         <div className="sm:w-1/2 px-16 mt-[70px] ">
@@ -69,6 +80,7 @@ function Login() {
               LOGIN
             </button>
           </form>
+          {error && <p className="text-red-500 mt-2 ml-4">{error}</p>}
           <div className="mr-12 mt-10 grid grid-cols-3 items-center text-gray-500">
             <hr className="border-gray-400 ml-20"></hr>
             <p className="text-center mr-6"> OR</p>

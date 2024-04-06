@@ -7,9 +7,11 @@ import time
 
 def scrape_and_combine():
     devfolio_scraper = devfolio()
+    print("hi")
     hack2skill_scraper = hack2skill()
+    print("hi")
     knowafest_scraper = Knowafest_competitions(num_pages=10)
-
+    print("hi")
     devfolio_scraper.scrape()
     hack2skill_scraper.scrape()
     knowafest_scraper.scrape()

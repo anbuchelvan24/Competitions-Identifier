@@ -3,6 +3,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import "./Header.css";
 import logo from "./psg_tech_logo.png";
+import { IoMdNotifications } from "react-icons/io";
 import { MdCircleNotifications } from "react-icons/md";
 import { AiOutlineCloseCircle } from "react-icons/ai"; // Import close icon
 import axios from "axios";
@@ -82,9 +83,9 @@ function Header() {
                 setNotificationsOpen(!notificationsOpen);
                 handleClick()
               }} // Toggle notifications panel
-              className="text-xl font-bold leading-6 text-gray-900" // Style as needed
+              className="notif-button" // Style as needed
             >
-              <MdCircleNotifications /> {`(${notificationCount})`}
+              <IoMdNotifications /><span class="badge">{`${notificationCount}`}</span>
             </button>
             {navigation.map((item) => (
               <a
