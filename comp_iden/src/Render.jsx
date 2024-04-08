@@ -31,20 +31,24 @@ export default function Render() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetchEvents();
-        // Sort records based on start date
-        const sortedRecords = response.sort((a, b) => new Date(a.start) - new Date(b.start));
-        setRecords(sortedRecords || []);
-        setFilteredRecords(sortedRecords || []);
-      } catch (error) {
-        console.error('Error fetching events:', error);
-        // Handle error (e.g., show error message to the user)
-      }
+        try {
+            const response = await fetchEvents();
+            if (!Array.isArray(response)) {
+                throw new Error('Invalid response format: Expected an array');
+            }
+            // Sort records based on start date
+            const sortedRecords = response.sort((a, b) => new Date(a.start) - new Date(b.start));
+            setRecords(sortedRecords || []);
+            setFilteredRecords(sortedRecords || []);
+        } catch (error) {
+            console.error('Error fetching and sorting events:', error);
+            // Handle error (e.g., show error message to the user)
+        }
     };
 
     fetchData();
-  }, []);
+}, []);
+
 
   useEffect(() => {
     if (searchItem === '') setFilteredRecords(records);
@@ -59,10 +63,12 @@ export default function Render() {
         <div className="gradient1" />
       </div>
       <div>
-      <TextField
+      <input
   className='searchbar'
+  role='search-box'
   sx={{
     width: '300px',
+    padding: '3rem 3rem',
     height: '70px',
     ml: '40%',
     textAlign: 'center',

@@ -17,7 +17,7 @@ import java.util.List;
 public class RouteController {
     @GetMapping("/eventsData")
     public String getEventData() throws ParseException {
-        List<EventDetails> allEvents = ParseEventData.parseExcelData("/src/main/resources/hackathons.xlsx");
+        List<EventDetails> allEvents = ParseEventData.parseExcelData("C:\\Users\\anbuc\\Downloads\\Competitions-Identifier\\comp_iden_backend\\calendar-backend\\src\\main\\resources\\hackathons.xlsx");
         Gson gson = new Gson();
         return gson.toJson(allEvents);
     }

@@ -1,7 +1,7 @@
-package com.MongoSpring.MongoSpring.Controller;
+package com.calendarbackend.calendarbackend.controllers;
 
-import com.MongoSpring.MongoSpring.Model.User;
-import com.MongoSpring.MongoSpring.Repository.UserRepo;
+import com.calendarbackend.calendarbackend.models.User;
+import com.calendarbackend.calendarbackend.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +15,6 @@ public class UserController {
         profileRepo.save(user);
     }
 
-//    @GetMapping("/profile/{id}")
-//    public User getUser(@PathVariable String id) {
-//        return userRepo.findById(String.valueOf(id)).orElse(null);
-//    }
     @CrossOrigin
     @GetMapping("/profile/{id}")
     public User getProfile(@PathVariable String id) {

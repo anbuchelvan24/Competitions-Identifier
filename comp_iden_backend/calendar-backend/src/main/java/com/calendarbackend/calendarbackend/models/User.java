@@ -1,4 +1,4 @@
-package com.MongoSpring.MongoSpring.Model;
+package com.calendarbackend.calendarbackend.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

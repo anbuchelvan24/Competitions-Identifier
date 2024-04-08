@@ -26,7 +26,9 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
+        <Route index element={<Navigate replace to="login" />} />
           <Route element={<AppLayout />}>
+
             {!isAuthenticated ? (
               <Route index element={<Navigate replace to="login" />} />
 
@@ -41,6 +43,12 @@ function App() {
                 <Route path="gallery" element={<Gallery />} /> 
               </>
             }
+            <Route path="home" element={<Home />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="dashboard" element={<Render />} />
+            <Route path="calendar" element={<Calendar />} />
+            <Route path="gallery" element={<Gallery />} />
+
           </Route>
 
           <Route path="login" element={<Login loginProps={props} />} />

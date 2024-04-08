@@ -1,5 +1,13 @@
 com\calendarbackend\calendarbackend\controllers\RouteController.class
+com\calendarbackend\calendarbackend\models\EventDetails.class
+com\calendarbackend\calendarbackend\repository\UserRepo.class
+com\calendarbackend\calendarbackend\service\GalleryEventService.class
+com\calendarbackend\calendarbackend\models\User.class
+com\calendarbackend\calendarbackend\repository\GalleryEventsRepo.class
+com\calendarbackend\calendarbackend\controllers\GalleryController.class
 com\calendarbackend\calendarbackend\helperClasses\FormatExcelDate.class
 com\calendarbackend\calendarbackend\helperClasses\ParseEventData.class
+com\calendarbackend\calendarbackend\models\GalleryEvents.class
 com\calendarbackend\calendarbackend\SpringBackend$WebConfig.class
 com\calendarbackend\calendarbackend\SpringBackend.class
+com\calendarbackend\calendarbackend\controllers\UserController.class
