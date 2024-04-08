@@ -68,8 +68,7 @@ function Login() {
     try {
       const response = await axios.post("http://localhost:8080/logins", { email: un, password: pass });
       if (response.status === 200) {
-        console.log("Okay dhaan da");
-        console.log(response.message);
+        
         navigate("/home");
         
       } else {
