@@ -52,6 +52,7 @@
     /* Adjust other card styles as needed */
   }
   
+
   .notif-button{
     font-size: 35px;
     transform: translateY(-8px);
@@ -67,4 +68,14 @@
     border-radius: 50%;
     padding: 4px 8px;
     font-size: 12px;
+  }
+  .search{
+    font-size: medium;
+    display: flex;
+    align-items: center;
+  }
+
+  .search::placeholder{
+    font-size: large;
+
   }

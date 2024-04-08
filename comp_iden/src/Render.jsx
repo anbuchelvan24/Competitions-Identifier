@@ -3,7 +3,11 @@ import Card from './components/cardu';
 import { motion } from 'framer-motion';
 import './Render.css'; // Import CSS file
 import { TextField } from '@mui/material';
+
 import { fetchEvents } from './DataHandling';
+
+import { IoSearch } from "react-icons/io5";
+
 
 const fadeIn = {
   initial: { opacity: 0, y: 100 },
@@ -84,6 +88,11 @@ export default function Render() {
   
 />
 
+
+      <div className='search'>
+        <TextField sx={{width: '300px', ml: '40%'}} size='large' value={searchItem} onChange={handleInputChange} label="Search Events" variant="standard" />
+        <IoSearch />
+
       </div>
       <motion.div
         variants={fadeIn}
@@ -108,6 +117,7 @@ export default function Render() {
       <div className="background2" aria-hidden="true">
         <div className="gradient2" />
       </div>
+    </div>
     </div>
   );
 }
