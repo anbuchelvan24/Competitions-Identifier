@@ -7,50 +7,14 @@ import './LoginForm.css';
 import { TbShieldLockFilled } from "react-icons/tb";
 import { FaUserAstronaut } from "react-icons/fa6";
 
-const LoginForm = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-    let authorized;
+const LoginForm = ({loginProps}) => {
 
+    const {email, password, setEmail, setPassword, handleLogin} = loginProps
+    
+    console.log(handleLogin)
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             handleLogin();
-        }
-    }
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        const isValidEmail = () => {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        if (!isValidEmail()) {
-            window.alert("Enter a Valid Email");
-            return;
-        }
-
-        try {
-            const response = await axios.post('http://localhost:8080/login', {
-                email: email,
-                password: password
-            });
-
-            const authorized = response.data;
-            
-            if(authorized)
-            {
-                alert("Logged in successfully !");
-                let currentuser = email;
-                navigate('/home');
-            }
-            else{
-                alert("Login Attempt failed !")
-            }
-
-        } catch (error) {
-            console.error(error);
         }
     }
 
