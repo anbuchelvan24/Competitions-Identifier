@@ -4,11 +4,53 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Import axios for making HTTP requests
 import "./Login.css";
+import axios from "axios"
+// import TextField from "@mui/material/TextField";
+
+function Login({loginProps}) {
+
+  const {email, password, setEmail, setPassword, setIsAuthenticated} = loginProps
+  const navigate = useNavigate();
+
+    const handleLogin = async (e) => {
+    
+      e.preventDefault();
+      const isValidEmail = () => {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+      }
+
+      if (!isValidEmail()) {
+          window.alert("Enter a Valid Email");
+          return;
+      }
+
+      try {
+          const response = await axios.post('http://localhost:8081/login', {
+              email: email,
+              password: password
+          });
+
+          if (response.status >= 200 && response.status <= 299) {
+            setIsAuthenticated(true)
+            navigate('/dashboard')
+
+          } else {
+            setIsAuthenticated(false);
+            alert('Login Failed! Try Again!')
+            navigate('/login')
+          }
+
+      } catch (error) {
+          console.error(error);
+      }
+  }
 
 function Login() {
   const [un, setUn] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState(""); // State to handle error messages
+
 
   const defaultOptions1 = {
     loop: true,
@@ -18,6 +60,8 @@ function Login() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -36,6 +80,7 @@ function Login() {
       setError("An error occurred. Please try again later.");
     }
   };
+
 
   return (
     <div className="main-container">
@@ -60,16 +105,16 @@ function Login() {
               type="text"
               name="email"
               placeholder="Email"
-              value={un}
-              onChange={(e) => setUn(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
             <input
               className="p-4 mr-10 rounded-xl border  ml-4"
               type="password"
               name="password"
               placeholder="Password"
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             ></input>
             <button
               className="bg-[#8B5FBF] text-white text-xl font-bold whitespace-nowrap ml-4 mr-10  self-stretch justify-center items-center mt-12 px-4 py-4 rounded-xl max-md:mt-10 max-md:px-5"
