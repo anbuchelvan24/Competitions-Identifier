@@ -24,7 +24,7 @@ function Header() {
   useEffect(() => {
     fetchNotifications();
     fetchNotificationCount();
-  }, []);
+  }, [notifications, notificationCount]);
   
   const fetchNotifications = () => {
     fetch('http://localhost:5000/api/notifications')
