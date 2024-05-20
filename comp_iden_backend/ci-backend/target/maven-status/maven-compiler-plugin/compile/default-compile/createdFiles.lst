@@ -1,0 +1,13 @@
+com\backend\backend\controllers\GalleryController.class
+com\backend\backend\models\EventDetails.class
+com\backend\backend\SpringBackend$WebConfig.class
+com\backend\backend\service\GalleryEventService.class
+com\backend\backend\helperClasses\FormatExcelDate.class
+com\backend\backend\models\GalleryEvents.class
+com\backend\backend\controllers\UserController.class
+com\backend\backend\helperClasses\ParseEventData.class
+com\backend\backend\repository\GalleryEventsRepo.class
+com\backend\backend\controllers\RouteController.class
+com\backend\backend\repository\UserRepo.class
+com\backend\backend\models\User.class
+com\backend\backend\SpringBackend.class
