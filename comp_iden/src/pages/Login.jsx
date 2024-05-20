@@ -47,13 +47,12 @@ function Login({loginProps}) {
               }),
               mode: 'cors' 
 
-              
             })
 
             if (response.ok) {
-              setIsAuthenticated(true)
               setError('')
               navigate('/dashboard')
+              setIsAuthenticated(true)
 
             } else {
               setIsAuthenticated(false);
