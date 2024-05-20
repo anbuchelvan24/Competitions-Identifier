@@ -30,7 +30,7 @@ function Header() {
   const fetchNotifications = () => {
     fetch('http://localhost:5000/api/notifications')
       .then(response => response.json())
-      .then(data => setNotifications(data))
+      .then(data => setNotifications([...data]))
       .catch(error => console.error('Error fetching notifications:', error));
   };
 

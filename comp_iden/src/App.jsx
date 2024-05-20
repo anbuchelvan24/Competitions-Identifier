@@ -30,11 +30,11 @@ function App() {
           <Route element={<AppLayout />}>
 
             {!isAuthenticated ? (
+
               <Route index element={<Navigate replace to="login" />} />
-
               // we can implement an 'unauthorized page' (now it defaults to page not found)
-
-            ): 
+              
+              ): 
               <>
                 <Route path="home" element={<Home />} />
                 <Route path="profile" element={<Profile />} />
@@ -43,11 +43,11 @@ function App() {
                 <Route path="gallery" element={<Gallery />} /> 
               </>
             }
-            <Route path="home" element={<Home />} />
+            {/* <Route path="home" element={<Home />} />
             <Route path="profile" element={<Profile />} />
             <Route path="dashboard" element={<Render />} />
             <Route path="calendar" element={<Calendar />} />
-            <Route path="gallery" element={<Gallery />} />
+          <Route path="gallery" element={<Gallery />} /> */}
 
           </Route>
 

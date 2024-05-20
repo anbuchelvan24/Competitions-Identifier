@@ -8,7 +8,6 @@
     border-radius: 0%;
     height: 30vh;
     width: auto;
-<<<<<<< Updated upstream
 }
 
 .regbox{
@@ -19,9 +18,6 @@
 
 .regbox:hover {
     border-radius: 40px;
-  }
-  
-=======
     margin-left: 2px;
 }
 
@@ -41,4 +37,3 @@
 .regbutton{
     border-radius: 20px;
 }
->>>>>>> Stashed changes
