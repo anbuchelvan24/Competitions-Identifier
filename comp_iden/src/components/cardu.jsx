@@ -9,6 +9,8 @@ import {
   faHeart,
   faIndianRupeeSign,
   faLocationDot,
+  faMoneyBill,
+  faMoneyBill1Wave,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Details";
 // import moment from "moment";
@@ -44,67 +46,55 @@ function Card(props) {
 };
   return (
     <>
-      <section className=" mt-24 grid gap-8 rounded-xl border border-black m-2  hover:shadow-2xl md:m-5">
-        <div>
-          <div className="flex mt-1 space-around">
-            <div className="w-[20%] h-[15%]">
-              <img
-                className="compbanner"
-                src={props.imgurl}
-                onError={(e) => { e.target.src = DemoImage; }}
-                alt="Competition Banner"
-              />
+      <section className="card-container"
+        style={{width: '120vh'}}
+      >
+        <div className="card-details">
+          <div className="event-image">
+            <img
+                  className="compbanner"
+                  src={props.imgurl}
+                  onError={(e) => { e.target.src = DemoImage; }}
+                  alt="Competition Banner"
+            />
+          </div>
+
+          <div className="event-info" style={{marginLeft: (props.title.length >= 27) ? '30vh' : '20vh'}}>
+            <div className="event-title">
+              <h1 style={{fontSize: '30px'}}>{props.title}</h1>
+            </div>  
+
+            <div className="event-date">
+              <FontAwesomeIcon icon={faCalendarDays} size="lg" />
+              <h4>Start Date : </h4>
+              <h4>{props.start}</h4>
+            </div>  
+
+            <div className="event-price">
+              <FontAwesomeIcon icon={faMoneyBill1Wave} size="lg" />
+              <h4>Price : </h4>
+              <h4>{props.fees}</h4>
             </div>
 
-            <div className="flex flex-col ">
-              <div className="p-5">
+            <div className="buttons">
+
+                <div className="interested-button">
+                  <FontAwesomeIcon icon={faHeart} size="lg" />
+                  <button onClick={handleInterested}>
+                    Interested
+                  </button>
+                </div>
+
                 <div>
-                  <nav>
-                    <h1
-                      className="font-bold text-md md:text-3xl md:mb-5"
-                      onClick={modalHandler}
-                    >
-                      {props.title}
-                    </h1>
-                  </nav>
+                  <button className="register-button">
+                    <a href={`${props.url}`}>
+                      Register
+                    </a>
+                  </button>
                 </div>
-                <div className="flex items-center space-x-1 md:mb-5">
-                  <FontAwesomeIcon icon={faCalendarDays} size="lg" />
-                  <h2 className="md:text-xl md:mr-2">{props.start}</h2>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <FontAwesomeIcon icon={faLocationDot} size="lg" />
-                  <h3 className="md:text-xl ">{props.mode}</h3>
-                </div>
-              </div>
             </div>
           </div>
 
-          <div className="px-3 ">
-            <div className="flex flex-grow">
-              <div className="flex border border-2 rounded p-2 space-x-2 items-center hover:shadow-xl md:mt-5">
-                <FontAwesomeIcon icon={faHeart} size="lg" />
-                <button className="text-black bg-grey" onClick={handleInterested}>
-                  Interested
-                </button>
-              </div>
-
-              <div className="flex ml-auto hover:shadow-xl md:w-1/3">
-                <button className="regbox p-1 w-full text-white bg-black bg-blue-500 ml-auto justify-end">
-                  <a href={`${props.url}`} className="register-button">
-                    Register
-                  </a>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div className="fee-text flex font-bold items-center space-x-1">
-            <FontAwesomeIcon icon={faIndianRupeeSign} size="xl" />
-            <h1 className="md:text-xl md:ml-1"> : {props.fees}</h1>
-          </div>
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from './components/cardu';
 import { motion } from 'framer-motion';
 import './Render.css'; // Import CSS file
@@ -7,6 +7,7 @@ import { TextField } from '@mui/material';
 import { fetchEvents } from './DataHandling';
 
 import { IoSearch } from "react-icons/io5";
+import AuthContext from './service/AuthContext';
 
 
 const fadeIn = {
@@ -19,6 +20,7 @@ const fadeIn = {
 };
 
 export default function Render() {
+  const { isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
   const [records, setRecords] = useState([]);
   const [filteredRecords, setFilteredRecords] = useState([]);
   const [searchItem, setSearchItem] = useState('');
@@ -58,37 +60,19 @@ export default function Render() {
     if (searchItem === '') setFilteredRecords(records);
   }, [searchItem, records]);
 
+  console.log(isAuthenticated)
+
   return (
+    <>
+
     <div className='renderpage'>
-      <div>
-        <h1 className="mt-24 ml-6 mb-2 font-bold text-4xl">Technical events</h1>
+            <div>
+              <h1 className="mt-24 ml-6 mb-2 font-bold text-4xl">Technical events</h1>
+            </div>
+            <div className="background1" aria-hidden="true">
+              <div className="gradient1" />
+            </div>
       </div>
-      <div className="background1" aria-hidden="true">
-        <div className="gradient1" />
-      </div>
-      <div>
-      <input
-  className='searchbar'
-  role='search-box'
-  sx={{
-    width: '300px',
-    padding: '3rem 3rem',
-    height: '70px',
-    ml: '40%',
-    textAlign: 'center',
-    '& input': { fontFamily: 'Poppins', fontSize: '20px' },
-    '& input::label': { fontFamily: 'Poppins', fontSize: '20px' }
-  }}
-  size="large"
-  value={searchItem}
-  onChange={handleInputChange}
-  label="Search"
-  variant="filled"
-  placeholder="Search Events"
-  
-/>
-
-
       <div className='search'>
         <TextField sx={{width: '300px', ml: '40%'}} size='large' value={searchItem} onChange={handleInputChange} label="Search Events" variant="standard" />
         <IoSearch />
@@ -117,7 +101,7 @@ export default function Render() {
       <div className="background2" aria-hidden="true">
         <div className="gradient2" />
       </div>
-    </div>
-    </div>
+    </>
+
   );
 }

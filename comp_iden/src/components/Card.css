@@ -4,41 +4,79 @@
     /* You mentioned it's equivalent to md:ml-1, but since it's commented out, I left it as is */
 }
 
+.card-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
 .compbanner {
-    border-radius: 0%;
+    width: 300px;
     height: 30vh;
-    width: auto;
-<<<<<<< Updated upstream
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
-.regbox{
+.card-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 100vh;
+
+}
+
+/* .event-title{
+    text-align: center;
+} */
+
+.event-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    flex-direction: column;
+    margin-right: 140px;
+    gap: 30px;
+}
+
+.event-date,
+.event-price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.buttons{
+    display: flex;
+    gap: 50px;
+}
+
+.register-button,
+.interested-button{
+    border-radius: 20px;
+    background-color: black;
     color: white;
-    border-radius: 10px;
-    transition: border-radius 0.2s ease-in;
+    width: 16vh;
+    height:4vh;
 }
 
-.regbox:hover {
-    border-radius: 40px;
-  }
-  
-=======
-    margin-left: 2px;
+.interested-button{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
 
-.main-container1 {
-    background: transparent;
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 0.3px solid grey;
-    box-shadow: 3px 3px 3px rgb(186, 183, 183);
-    transition: box-shadow 0.3s; /* Adding transition for smooth effect */
-}
 
-.main-container1:hover {
-    box-shadow: 3px 3px 3px rgb(53, 52, 52);
-}
-
-.regbutton{
-    border-radius: 20px;
-}
->>>>>>> Stashed changes
